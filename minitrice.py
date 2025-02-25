@@ -29,7 +29,7 @@ def parseAndCalculus(input:str):
         secondOperand = int(input[operatorIndex+1:].strip())
     
     except: 
-        printStdout("Les deux opérateur douvent être des nombres entiers")
+        printStdout("Erreur de syntaxe pour le calcul: \""+input+"\"")
         sys.exit(1)
 
     # Appel la bonne fonction selon l'opérateur detecté
