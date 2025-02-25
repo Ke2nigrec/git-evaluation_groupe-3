@@ -19,6 +19,9 @@ jobs:
       with:
         python-version: "3.10"
 
+    - name: Vérifier la présence du script
+      run: |
+        ls -l minitrice.py
     - name: Créer le dossier results et exécuter les test
       run: |
         mkdir -p results
