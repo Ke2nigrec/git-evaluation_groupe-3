@@ -49,11 +49,14 @@ def soustraction(op1, op2):
     return op1-op2;
 def division(op1, op2):
     # Handle /0 error
+    if (op2==0):
+        printStdout("Division par zéro")
+        sys.exit(1)
     return op1/op2;
 
 # Permet d'afficher le string en paramètre sur la sortie stdout
 def printStdout(textToPrint:str):
-    sys.stdout.write(textToPrint)
+    sys.stdout.write(textToPrint+"\n")
     sys.stdout.flush()
 
 # Gère les entrées sur le CLI pour calculer les expressions
