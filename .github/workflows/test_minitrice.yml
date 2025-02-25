@@ -1,0 +1,59 @@
+name: Test Minitrice
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Set up Python 3.10
+      uses: actions/setup-python@v3
+      with:
+        python-version: "3.10"
+
+    - name: Rendre le script exécutable
+      run: chmod +x minitrice.py
+
+    - name: Créer le dossier si il n'existe pas
+      run: |
+        if [ ! -d "results" ]; then
+          mkdir -p results
+        fi
+
+    - name: Exécuter les tests
+      run: |
+        set +e
+        for input_file in test/*.txt; do
+          filename=$(basename "$input_file")
+          output_file="results/${filename%.txt}-result.txt"
+          ./minitrice.py < "$input_file" > "$output_file" 2>&1
+          exit_code=$?
+          if [ $exit_code -ne 0 ]; then
+            echo "Erreur lors de l'exécution du test, code de retour: $exit_code" >> "$output_file"
+          else
+            echo "L'execution s'est bien déroulé, code de retour: $exit_code" >> "$output_file"
+          fi
+        done
+
+    - name: Sauvegarder les fichiers
+      uses: actions/upload-artifact@v4
+      with:
+        name: resultats-minitrice
+        path: results/
+
+    - name: Commit et push des résultats
+      run: |
+        git config --global user.name 'github-actions[bot]'
+        git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+        git add results/
+        git commit -m "test(test_minitrice.yml) ajout des résultats des tests"
+        git push origin HEAD:main  # Remplacez 'main' par votre branche cible si nécessaire
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
