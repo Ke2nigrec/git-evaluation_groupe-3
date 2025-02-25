@@ -73,8 +73,11 @@ def interactiveMinitrice():
 
 # Vérifie la présence ou non de pipeline
 if not isatty(sys.stdin.fileno()):
-    # Affiche le résultat de l'opération en entrée du programme
-    printStdout(str(parseAndCalculus(str(sys.stdin.read()))))
+    lignes=sys.stdin.read().split('\n')
+    for ligne in lignes:
+        if ligne!="":
+            #Affiche le résultat de l'opération en entrée du programme
+            printStdout(str(parseAndCalculus(str(ligne)))+"\n")
     # Retourne que le programme s'est bien déroulé
     sys.exit(0)
 else: 
