@@ -18,14 +18,14 @@ jobs:
       uses: actions/setup-python@v3
       with:
         python-version: "3.10"
-
-    - name: Vérifier la présence du script
-      run: |
-        ls -l minitrice.py
+        
+    - name: Rendre le script exécutable
+      run: chmod +x minitrice.py
+      
     - name: Créer le dossier results et exécuter les test
       run: |
         mkdir -p results
-        cat test/00-addition.txt | ./minitrice.py > results/00-addition-result.txt
+        cat test/00-addition.txt | python3 minitrice.py > results/00-addition-result.txt
         exit_code=$?
         echo "Résultat de l'execution: $exit_code" >> results/resultat.txt
         cat results/resultat.txt
