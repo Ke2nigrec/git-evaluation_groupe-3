@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
 
 jobs:
   build:
@@ -25,13 +25,22 @@ jobs:
     - name: Créer le dossier results et exécuter les test
       run: |
         mkdir -p results
-        cat test/00-addition.txt | python3 minitrice.py > results/00-addition-result.txt
+        cat test/00-addition.txt | ./minitrice.py > results/00-addition-result.txt
         exit_code=$?
-        echo "Résultat de l'execution: $exit_code" >> results/resultat.txt
-        cat results/resultat.txt
+        echo "Résultat de l'execution: $exit_code" >> results/00-addition-result.txt
 
     - name: Sauvegarder les fichiers
       uses: actions/upload-artifact@v4
       with:
         name: resultats-minitrice
         path: results/
+
+    - name: Commit et push des résultats
+      run: |
+        git config --global user.name 'github-actions[bot]'
+        git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+        git add results/
+        git commit -m "test(test_minitrice.yml) ajout des résultat de test"
+        git push origin HEAD:main  # Remplacez 'main' par votre branche cible si nécessaire
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Utilise le token fourni par GitHub Actions
