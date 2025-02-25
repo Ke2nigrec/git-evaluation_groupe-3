@@ -1,0 +1,34 @@
+name: Test Minitrice
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Set up Python 3.10
+      uses: actions/setup-python@v3
+      with:
+        python-version: "3.10"
+
+    - name: Créer le dossier results et exécuter les test
+      run: |
+        mkdir -p results
+        cat test/00-addition.txt | ./minitrice.py > results/00-addition-result.txt
+        exit_code=$?
+        echo "Résultat de l'execution: $exit_code" >> results/resultat.txt
+        cat results/resultat.txt
+
+    - name: Sauvegarder les fichiers
+      uses: actions/upload-artifact@v3
+      with:
+        name: resultats-minitrice
+        path: results/
