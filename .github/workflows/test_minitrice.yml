@@ -28,7 +28,7 @@ jobs:
         cat results/resultat.txt
 
     - name: Sauvegarder les fichiers
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v2
       with:
         name: resultats-minitrice
         path: results/
