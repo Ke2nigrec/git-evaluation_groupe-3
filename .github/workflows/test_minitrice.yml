@@ -4,18 +4,10 @@ on:
   workflow_dispatch:
 
 permissions:
-<<<<<<< HEAD
-  contents: read
-
-jobs:
-  build:
-
-=======
   contents: write
 
 jobs:
   build:
->>>>>>> fb97419 (feat(git Actions) Création du git Actions de test)
     runs-on: ubuntu-latest
 
     steps:
@@ -26,30 +18,19 @@ jobs:
       with:
         python-version: "3.10"
 
-<<<<<<< HEAD
-    - name: Créer le dossier results et exécuter les test
-      run: |
-        mkdir -p results
-        cat test/00-addition.txt | ./minitrice.py > results/00-addition-result.txt
-        exit_code=$?
-        echo "Résultat de l'execution: $exit_code" >> results/resultat.txt
-        cat results/resultat.txt
-
-    - name: Sauvegarder les fichiers
-      uses: actions/upload-artifact@v3
-      with:
-        name: resultats-minitrice
-        path: results/
-=======
     - name: Rendre le script exécutable
       run: chmod +x minitrice.py
 
+    - name: Créer la branche
+      run: |
+        git config --global user.name 'github-actions[bot]'
+        git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+        git switch -c resultCheck
     - name: Créer le dossier si il n'existe pas
       run: |
         if [ ! -d "results" ]; then
           mkdir -p results
         fi
-
     - name: Exécuter les tests
       run: |
         set +e
@@ -64,20 +45,18 @@ jobs:
             echo "L'execution s'est bien déroulé, code de retour: $exit_code" >> "$output_file"
           fi
         done
-
+        date +"%Y-%m-%d %H:%M:%S" > results/pushDate
     - name: Sauvegarder les fichiers
       uses: actions/upload-artifact@v4
       with:
         name: resultats-minitrice
         path: results/
 
-    - name: Commit et push des résultats
+    - name: Commit et push de la branch
       run: |
-        git config --global user.name 'github-actions[bot]'
-        git config --global user.email 'github-actions[bot]@users.noreply.github.com'
         git add results/
-        git commit -m "test(test_minitrice.yml) ajout des résultats des tests"
-        git push origin HEAD:main  # Remplacez 'main' par votre branche cible si nécessaire
+        git commit -a -m "Mise à jour demandé des fichiers de resultat"
+        git rebase main 
+        git push -u origin resultCheck
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
->>>>>>> fb97419 (feat(git Actions) Création du git Actions de test)
