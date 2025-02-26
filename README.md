@@ -37,8 +37,8 @@ python-installer.exe /quiet InstallAllUsers=1 PrependPath=1
 sudo apt install python3
 ```
 
-# Execution
-## 1) Utilisation intéractive
+# Exécution
+## 1) Utilisation interactive
 Pour éxécuter le programme tapez la commande:
 ```bash
 ./minitrice
@@ -77,6 +77,48 @@ Ceci va nous renvoyer sur la sortie ```STDOUT```:
 ```
 # Générator
 
+```generator``` est un programme permettant de générer un nombre ```n``` opérations de façon aléatoire avant de les renvoyer sur la sortie ```STDOUT```. La valeur de ```n``` est choisie par l'utilisateur.
+
+## Exécution
+L'exécution de ce programme peut s'effectuer de trois façons différentes selon la manières dont l'utilisateur souhaite passer son argument :
+
+### 1) Exécution basique
+La façon la plus basique d'exécuter le programme est de lancer la commande suivante :
+
+```bash
+./generator
+```
+Dans ce cas, le programme demandera de lui-même à l'utilisateur d'entrer la valeur de ```n```.
+
+### 2) Exécution avec argument sur la ligne de commande
+L'utilisateur peut s'il le souhaite entrer ```n``` directement sur le terminal de la façon suivante :
+
+```bash
+./generator <n>
+```
+
+### 3) Exécution avec lecture de la sortie standard
+Enfin, il est possible de lier l'entrée du programme avec un pipe comme dans l'exemple suivant :
+```bash
+echo <n> | ./generator
+```
+
+## Gestion des erreurs
+Afin de garantir le bon fonctionnement de ce programme, les deux conditions suivantes doivent être respectées sous peine de lever les erreurs suivantes :
+
+### 1) Le paramètre doit être un entier positif
+Le paramètre doit être un nombre entier positif. Tout argument ne respectant pas cette condition lèvera l'erreur suivante :
+
+```bash
+"Exception: Erreur : L'argument en entree doit etre un nombre entier positif"
+```
+
+### 2) Un seul argument est attendu au lancement du programme
+Lancer le programme avec plus d'un seul argument lèvera l'erreur suivante :
+
+```bash
+"Exception: Erreur : Un seul argument attendu sur la ligne de commande !"
+```
 
 # Publication
 - [Organisation du développement collaboratif](https://slides.com/frozar/git) : le support de cours pour git/github,
