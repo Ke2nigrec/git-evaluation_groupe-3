@@ -8,8 +8,10 @@ operators = ("+","-","/","*")
 
 # Parse le string et calcul 
 def parseAndCalculus(input:str):
-    # ERROR HANDELIND needed HERE
-    
+    # Vérifie si l'entrée est vide, si oui on ne retourne pas d'erreur on invite l'utilisateur à continuer
+    if (input == "\n"):
+        printStdout("Merci d'entrer un opération mathématique de la forme: x[+,-,*,/]y")
+        return ""
     # Trouve l'opérateur dans le string en paramètre 
     findedOperator = None;
     for i in range(len(operators)):
@@ -23,14 +25,18 @@ def parseAndCalculus(input:str):
         printStdout("Merci d'entrer un opération mathématique de la forme: x[+,-,*,/]y")
         sys.exit(1)
 
-    # Permet de vérifier si les paramètres sont des entiers (à changer en fonction du code, pour prendre des float aussi par exemple)
+    # Permet de vérifier si les paramètres sont du bon type
+    # Ces vérifications infèrent également la detection des erreurs de type 1+*2 
     try:
         firstOperand = int(input[:operatorIndex].strip())
         secondOperand = int(input[operatorIndex+1:].strip())
-    
     except: 
-        printStdout("Erreur de syntaxe pour le calcul: \""+input+"\"")
-        sys.exit(1)
+        try:
+            firstOperand = float(input[:operatorIndex].strip())
+            secondOperand = float(input[operatorIndex+1:].strip())
+        except:
+            printStdout("Erreur de syntaxe pour le calcul: \""+input+"\"")
+            sys.exit(1)
 
     # Appel la bonne fonction selon l'opérateur detecté
     match findedOperator:
@@ -56,7 +62,7 @@ def division(op1, op2):
 
 # Permet d'afficher le string en paramètre sur la sortie stdout
 def printStdout(textToPrint:str):
-    sys.stdout.write(textToPrint+"\n")
+    sys.stdout.write(textToPrint)
     sys.stdout.flush()
 
 # Gère les entrées sur le CLI pour calculer les expressions
@@ -66,7 +72,6 @@ def interactiveMinitrice():
         for line in sys.stdin:
             if len(line) !=0:         
                 printStdout(str(parseAndCalculus(line))+"\n")
-                
             printStdout("> ")
     except KeyboardInterrupt :
         # Si l'utilisateur fait ctrl + D (ctrl + C)
@@ -81,12 +86,9 @@ if not isatty(sys.stdin.fileno()):
         if ligne!="":
             #Affiche le résultat de l'opération en entrée du programme
             printStdout(str(parseAndCalculus(str(ligne)))+"\n")
+            printStdout("\n")
     # Retourne que le programme s'est bien déroulé
     sys.exit(0)
 else: 
     # Si il n'y a pas de pipeline on lance le mode interatif
     interactiveMinitrice()
-   
-
-
-
