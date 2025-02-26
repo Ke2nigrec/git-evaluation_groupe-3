@@ -8,6 +8,8 @@ OPERATEURS = ["+", "-", "*", "/"]
 is_pipe = not isatty(sys.stdin.fileno())
 if is_pipe:
     nb_operations = int(sys.stdin.read())
+elif len(sys.argv) > 1:
+    nb_operations = int(sys.argv[1])
 else:
     nb_operations = int(input("Combien d'operations souhaitez-vous genener : "))
 
