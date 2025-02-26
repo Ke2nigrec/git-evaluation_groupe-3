@@ -1,8 +1,18 @@
+#!/usr/bin/env python3 
+
 from os import isatty
 import sys
 import random
 
 OPERATEURS = ["+", "-", "*", "/"]
+
+# Gestion des erreurs
+if len(sys.argv) > 2:
+    raise Exception("Erreur : Un seul argument attendu sur la ligne de commande !")
+
+for c in sys.argv[1]:
+    if c not in ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]:
+        raise Exception("Erreur : L'argument en entree doit etre un nombre entier positif")    
 
 # Vérification du pipe
 is_pipe = not isatty(sys.stdin.fileno())
