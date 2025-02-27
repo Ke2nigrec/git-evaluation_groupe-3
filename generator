@@ -9,6 +9,8 @@ OPERATEURS = ["+", "-", "*", "/"]
 # Gestion des erreurs
 if len(sys.argv) > 2:
     raise Exception("Erreur : Un seul argument attendu sur la ligne de commande !")
+if len(sys.argv) < 2:
+    raise Exception("Erreur : Vous devez entrer un argument de type entier positif lors du lancement du programme !\nEx: ./generator <arg>")
 
 for c in sys.argv[1]:
     if c not in ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]:
