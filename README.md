@@ -80,27 +80,10 @@ Ceci va nous renvoyer sur la sortie ```STDOUT```:
 ```generator``` est un programme permettant de générer un nombre ```n``` opérations de façon aléatoire avant de les renvoyer sur la sortie ```STDOUT```. La valeur de ```n``` est choisie par l'utilisateur.
 
 ## Exécution
-L'exécution de ce programme peut s'effectuer de trois façons différentes selon la manières dont l'utilisateur souhaite passer son argument :
-
-### 1) Exécution basique
-La façon la plus basique d'exécuter le programme est de lancer la commande suivante :
-
-```bash
-./generator
-```
-Dans ce cas, le programme demandera de lui-même à l'utilisateur d'entrer la valeur de ```n```.
-
-### 2) Exécution avec argument sur la ligne de commande
-L'utilisateur peut s'il le souhaite entrer ```n``` directement sur le terminal de la façon suivante :
+L'exécution de ce programme requiert la présence d'un argument en ligne de commande. Afin de générer ```n``` opérations, l'utilisateur devra exécuter la commande suivante :
 
 ```bash
 ./generator <n>
-```
-
-### 3) Exécution avec lecture de la sortie standard
-Enfin, il est possible de lier l'entrée du programme avec un pipe comme dans l'exemple suivant :
-```bash
-echo <n> | ./generator
 ```
 
 ## Gestion des erreurs
