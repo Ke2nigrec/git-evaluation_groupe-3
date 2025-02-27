@@ -19,7 +19,7 @@ jobs:
         python-version: "3.10"
 
     - name: Rendre le script exécutable
-      run: chmod +x minitrice.py
+      run: chmod +x minitrice
 
     - name: Créer la branche
       run: |
@@ -37,7 +37,7 @@ jobs:
         for input_file in test/*.txt; do
           filename=$(basename "$input_file")
           output_file="results/${filename%.txt}-result.txt"
-          ./minitrice.py < "$input_file" > "$output_file" 2>&1
+          ./minitrice < "$input_file" > "$output_file" 2>&1
           exit_code=$?
           if [ $exit_code -ne 0 ]; then
             echo "Erreur lors de l'exécution du test, code de retour: $exit_code" >> "$output_file"
