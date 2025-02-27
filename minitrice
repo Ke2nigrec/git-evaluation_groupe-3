@@ -48,17 +48,17 @@ def parseAndCalculus(input:str):
 
 # Gère les opération de base (+,-,/,*)
 def addition(op1, op2):
-    return op1+op2;
+    return round(op1+op2,2);
 def multiplication(op1, op2):
-    return op1*op2;
+    return round(op1*op2,2);
 def soustraction(op1, op2):
-    return op1-op2;
+    return round(op1-op2,2);
 def division(op1, op2):
     # Handle /0 error
     if (op2==0):
         printStdout("Division par zéro\n")
         sys.exit(1)
-    return op1/op2;
+    return round(op1/op2,2);
 
 # Permet d'afficher le string en paramètre sur la sortie stdout
 def printStdout(textToPrint:str):
