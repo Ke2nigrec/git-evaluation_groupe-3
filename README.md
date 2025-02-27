@@ -1,12 +1,22 @@
 - [git-evaluation\_groupe-3](#git-evaluation_groupe-3)
   - [Format des Commit:](#format-des-commit)
 - [Installation:](#installation)
-- [Execution](#execution)
-  - [1) Utilisation intéractive](#1-utilisation-intéractive)
+- [Exécution](#exécution)
+  - [1) Utilisation interactive](#1-utilisation-interactive)
   - [2) Utilisation en lisant `STDIN` avec `echo`](#2-utilisation-en-lisant-stdin-avec-echo)
   - [3) Utilisation en lisant `STDIN` avec `cat`](#3-utilisation-en-lisant-stdin-avec-cat)
 - [Générator](#générator)
-- [Github Actions - Test Minitrice](#Github-Actions---Test-Minitrice)
+  - [Exécution](#exécution-1)
+  - [Gestion des erreurs](#gestion-des-erreurs)
+    - [1) Le paramètre doit être un entier positif](#1-le-paramètre-doit-être-un-entier-positif)
+      - [Procédure pour reproduire cette erreur:](#procédure-pour-reproduire-cette-erreur)
+    - [2) Un seul argument est attendu au lancement du programme](#2-un-seul-argument-est-attendu-au-lancement-du-programme)
+      - [Procédure pour reproduire cette erreur:](#procédure-pour-reproduire-cette-erreur-1)
+    - [3) Il faut entrer au moins un argument au lancement du programme](#3-il-faut-entrer-au-moins-un-argument-au-lancement-du-programme)
+      - [Procédure pour reproduire cette erreur:](#procédure-pour-reproduire-cette-erreur-2)
+  - [Github Actions - Test Minitrice](#github-actions---test-minitrice)
+  - [Exécution](#exécution-2)
+  - [Fonctionnement](#fonctionnement)
 - [Publication](#publication)
 
 
@@ -96,12 +106,31 @@ Le paramètre doit être un nombre entier positif. Tout argument ne respectant p
 ```bash
 "Exception: Erreur : L'argument en entree doit etre un nombre entier positif"
 ```
+#### Procédure pour reproduire cette erreur:
+```bash
+$ ./generator a
+```
 
 ### 2) Un seul argument est attendu au lancement du programme
 Lancer le programme avec plus d'un seul argument lèvera l'erreur suivante :
 
 ```bash
 "Exception: Erreur : Un seul argument attendu sur la ligne de commande !"
+```
+#### Procédure pour reproduire cette erreur:
+```bash
+$ ./generator 2 4
+```
+
+### 3) Il faut entrer au moins un argument au lancement du programme
+Lancer le programme avec moins d'un argument lèvera l'erreur suivante :
+
+```bash
+"Erreur : L'argument en entree doit etre un nombre entier positif"
+```
+#### Procédure pour reproduire cette erreur:
+```bash
+$ ./generator
 ```
 
 ## Github Actions - Test Minitrice
