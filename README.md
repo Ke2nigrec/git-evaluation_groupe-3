@@ -6,6 +6,7 @@
   - [2) Utilisation en lisant `STDIN` avec `echo`](#2-utilisation-en-lisant-stdin-avec-echo)
   - [3) Utilisation en lisant `STDIN` avec `cat`](#3-utilisation-en-lisant-stdin-avec-cat)
 - [Générator](#générator)
+- [Github Actions - Test Minitrice](#Github-Actions---Test-Minitrice)
 - [Publication](#publication)
 
 
@@ -102,6 +103,19 @@ Lancer le programme avec plus d'un seul argument lèvera l'erreur suivante :
 ```bash
 "Exception: Erreur : Un seul argument attendu sur la ligne de commande !"
 ```
+
+## Github Actions - Test Minitrice
+
+```test_minitrice.yml``` est un workflow qui permet de tester le minitrice sur les fichiers de test fourni dans le répertoire ```test/```.
+
+## Exécution
+Ce workflow n'a pas de lancement automatique, pour l'exécuter il faut aller dans l'onglet Action puis accéder au workflow "Test Minitrice", ou plus simplement [en cliquant ici](https://github.com/Ke2nigrec/git-evaluation_groupe-3/actions/workflows/test_minitrice.yml). Appuyé ensuite sur le bouton "Run workflow" et lancez le sur le main.
+
+## Fonctionnement
+Ce worflow permet à la fois de mettre à jour les résultats de test sur les fichiers test mais aussi de constater simplement ces résultats.
+Plus concrètement, il créer une branche qui met à jour le dossier ```/results```. Si vous souhaitez apporté ces modifications à la main, il vous suffit de lancer une Pull Request et de merge la branche au main. L'historique restera propre car la branche est rebase sur la main par défaut. Si vous ne souhaitez pas sauvegarder ces modifications, **supprimez la branche**.
+
+REMINDER: Pensez à supprimer la branche à chaque fois que vous avez terminé son utilisation !
 
 # Publication
 - [Organisation du développement collaboratif](https://slides.com/frozar/git) : le support de cours pour git/github,
