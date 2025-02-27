@@ -69,13 +69,16 @@ def printStdout(textToPrint:str):
 def interactiveMinitrice():
     printStdout("> ")
     try:
-        for line in sys.stdin:
-            if len(line) !=0:         
-                printStdout(str(parseAndCalculus(line))+"\n")
+        while True:
+            line = sys.stdin.readline()  # Lire une ligne de l'entrée standard
+            if line == "":  # Détection de Ctrl+D (EOF)
+                printStdout("\nFin des calculs :)\n")
+                sys.exit(0)
+            if line.strip():  # Ignore les lignes vides
+                printStdout(str(parseAndCalculus(line)) + "\n")
             printStdout("> ")
-    except KeyboardInterrupt :
-        # Si l'utilisateur fait ctrl + D (ctrl + C)
-        printStdout("\nFin des calculs !")
+    except KeyboardInterrupt:
+        printStdout("\nFin des calculs !\n")
         sys.exit(0)
 
 
@@ -85,7 +88,7 @@ if not isatty(sys.stdin.fileno()):
     for ligne in lignes:
         if ligne!="":
             #Affiche le résultat de l'opération en entrée du programme
-            printStdout(str(parseAndCalculus(str(ligne)))+"\n")
+            printStdout(str(parseAndCalculus(str(ligne))))
             printStdout("\n")
     # Retourne que le programme s'est bien déroulé
     sys.exit(0)
