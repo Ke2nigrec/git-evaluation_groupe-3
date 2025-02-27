@@ -15,8 +15,9 @@
     - [3) Il faut entrer au moins un argument au lancement du programme](#3-il-faut-entrer-au-moins-un-argument-au-lancement-du-programme)
       - [Procédure pour reproduire cette erreur:](#procédure-pour-reproduire-cette-erreur-2)
   - [Github Actions - Test Minitrice](#github-actions---test-minitrice)
-  - [Exécution](#exécution-2)
-  - [Fonctionnement](#fonctionnement)
+    - [Exécution](#exécution-2)
+    - [Fonctionnement](#fonctionnement)
+  - [Vidéo Gource](#vidéo-gource)
 - [Publication](#publication)
 
 
@@ -133,7 +134,7 @@ Lancer le programme avec moins d'un argument lèvera l'erreur suivante :
 $ ./generator
 ```
 
-## Github Actions - Test Minitrice
+# Github Actions - Test Minitrice
 
 ```test_minitrice.yml``` est un workflow qui permet de tester le minitrice sur les fichiers de test fourni dans le répertoire ```test/```.
 
@@ -145,6 +146,9 @@ Ce worflow permet à la fois de mettre à jour les résultats de test sur les fi
 Plus concrètement, il créer une branche qui met à jour le dossier ```/results```. Si vous souhaitez apporté ces modifications à la main, il vous suffit de lancer une Pull Request et de merge la branche au main. L'historique restera propre car la branche est rebase sur la main par défaut. Si vous ne souhaitez pas sauvegarder ces modifications, **supprimez la branche**.
 
 REMINDER: Pensez à supprimer la branche à chaque fois que vous avez terminé son utilisation !
+
+# Vidéo gource
+Retrouvez le lien de la vidéo gource ici: https://youtu.be/Uz2YnlC74I0
 
 # Publication
 - [Organisation du développement collaboratif](https://slides.com/frozar/git) : le support de cours pour git/github,
