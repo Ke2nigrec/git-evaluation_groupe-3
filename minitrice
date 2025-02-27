@@ -35,7 +35,7 @@ def parseAndCalculus(input:str):
             firstOperand = float(input[:operatorIndex].strip())
             secondOperand = float(input[operatorIndex+1:].strip())
         except:
-            printStdout("Erreur de syntaxe pour le calcul: \""+input+"\"")
+            printStdout("Erreur de syntaxe pour le calcul: \""+input+"\"\n")
             sys.exit(1)
 
     # Appel la bonne fonction selon l'opérateur detecté
@@ -56,7 +56,7 @@ def soustraction(op1, op2):
 def division(op1, op2):
     # Handle /0 error
     if (op2==0):
-        printStdout("Division par zéro")
+        printStdout("Division par zéro\n")
         sys.exit(1)
     return op1/op2;
 
